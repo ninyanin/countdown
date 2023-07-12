@@ -1,0 +1,89 @@
+<style>
+    .homepage {
+        font-family: monospace;
+        text-align: center;
+        margin-top: 25%;
+
+    }
+</style>
+
+<html>
+
+    
+    <body style="background-color:#78BB7B;"></body>
+
+    
+    <div class="homepage">
+        <!-- input -->
+        <h2>Enter the date you want to countdown to</h2>
+        <label for="day">Day:</label>
+        <input type="text" id="day" name="day"><br><br>
+        <label for="month">Month:</label>
+        <input type="text" id="month" name="month"><br><br>
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="day"><br><br>
+        <input type="submit" value="Submit" id="submit">
+
+        
+        <!-- when answer submitted-->
+        <h2 id="demo"></h2>
+        <h2 id="demo2"></h2>
+
+    </div>
+</html>
+
+
+
+
+<script>
+    function countDownDay(countdownTo){
+        
+        var today = new Date();
+        var distance = countdownTo - today;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        return (days);
+
+    }
+
+    function countDownTime(countdownTo){
+        var today = new Date();
+        var distance = countdownTo - today;
+
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        return (hours + " h "+ minutes + " m " + seconds + " s ");
+
+    }
+
+    var btn = document.getElementById('submit');
+    btn.addEventListener('click', func);
+
+    function func() {
+        var ansday =  document.getElementById("day").value;
+        var ansmonth =  document.getElementById("month").value;
+        var ansyear =  document.getElementById("year").value;
+        var date = ansyear + "-" + ansmonth + "-" + ansday;
+
+        var countdownTo = new Date(date).getTime();
+
+        let day = countDownDay(countdownTo);
+        let time = countDownTime(countdownTo);
+        document.getElementById("demo").innerHTML = day + "d " + time;  
+
+       
+    }
+
+
+    
+
+    
+
+
+</script>
